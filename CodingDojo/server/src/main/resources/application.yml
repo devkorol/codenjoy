@@ -69,7 +69,7 @@ database:
 
 admin:
   login: admin@codenjoyme.com
-  password: admin
+  password: I7x04BYSVrgF
 
 log:
   debug: false

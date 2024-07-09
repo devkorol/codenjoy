@@ -24,12 +24,12 @@ pages = pages || {};
 
 function defaultRegistrationSettings() {
     return {
-        showNames: true,
-        showData1: true,
-        showData2: true,
-        showData3: true,
-        showData4: true,
-        showGameModes: true,
+        showNames: false,
+        showData1: false,
+        showData2: false,
+        showData3: false,
+        showData4: false,
+        showGameModes: false,
         defaultGameMode: null,
         gameModes: {
             icancode: [   // TODO вынести это как-то в настройки игры icancode
