@@ -23,7 +23,7 @@
 ###
 
 
-java -jar ./server/target/codenjoy-contest.war \
+java -jar /home/kkorol/codenjoy/CodingDojo/server/target/codenjoy-contest.war \
         --MAVEN_OPTS=-Xmx1024m \
         --context=/codenjoy-contest \
         --server.port=8080 \
