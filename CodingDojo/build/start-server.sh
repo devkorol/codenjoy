@@ -28,4 +28,6 @@ java -jar ./server/target/codenjoy-contest.war \
         --MAVEN_OPTS=-Xmx1024m \
         --spring.profiles.active=sqlite,debug \
         --context=/codenjoy-contest \
-        --server.port=8080
+        --server.port=8080 \
+        --spring.profiles.active=postgres,mollymage \
+        --database.password=c1o3d4e5n6j7o8y9
