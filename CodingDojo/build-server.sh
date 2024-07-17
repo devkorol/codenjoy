@@ -26,7 +26,7 @@ cd ..
 
 export ROOT=$PWD
 
-set GAMES_TO_RUN=mollymage
+set GAMES_TO_RUN=mollymage,rawelbbub
 
 if [ "$GAMES_TO_RUN" == "" ] ; then
 	# export GAMES_TO_RUN=all

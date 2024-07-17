@@ -27,5 +27,5 @@ java -jar /home/kkorol/codenjoy/CodingDojo/server/target/codenjoy-contest.war \
         --MAVEN_OPTS=-Xmx1024m \
         --context=/game \
         --server.port=8080 \
-        --spring.profiles.active=postgres,mollymage \
+        --spring.profiles.active=postgres,mollymage,rawelbbub \
         --database.password=c1o3d4e5n6j7o8y9
