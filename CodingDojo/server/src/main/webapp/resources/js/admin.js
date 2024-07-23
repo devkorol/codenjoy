@@ -24,7 +24,7 @@ pages = pages || {};
 
 function defaultRegistrationSettings() {
     return {
-        showNames: false,
+        showNames: true,
         showData1: false,
         showData2: false,
         showData3: false,

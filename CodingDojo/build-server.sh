@@ -24,7 +24,7 @@
 
 export ROOT=$PWD
 
-export GAMES_TO_RUN=rawelbbub
+export GAMES_TO_RUN=mollymage
 
 if [ "$GAMES_TO_RUN" == "" ] ; then
 	# export GAMES_TO_RUN=all
