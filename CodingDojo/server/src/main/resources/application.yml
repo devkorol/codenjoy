@@ -38,7 +38,7 @@ board.save.ticks: 1
 registration:
   opened: true
   nickname:
-    allowed: false
+    allowed: true
   password:
     min-length: 8
     autogen-length: 8
