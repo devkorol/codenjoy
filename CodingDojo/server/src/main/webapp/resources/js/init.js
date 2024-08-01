@@ -37,12 +37,12 @@ setup.enableAlways = false;
 /**
  * Отображать ли имя игрока над бордой.
  */
-setup.enablePlayerInfo = true;
+setup.enablePlayerInfo = false;
 
 /**
  * Отображать ли уровень игрока над бордой.
  */
-setup.enablePlayerInfoLevel = true;
+setup.enablePlayerInfoLevel = false;
 
 /**
  * Отображать ли таблицу с очкам участников.
@@ -52,7 +52,7 @@ setup.enableLeadersTable = true;
 /**
  * Отображать ли поле fork me from github.
  */
-setup.enableForkMe = true;
+setup.enableForkMe = false;
 
 /**
  * Отображать ли ссылку на правила игры.
@@ -130,7 +130,7 @@ setup.drawCanvases = true;
 /**
  * Включать ли чат.
  */
-setup.enableChat = true;
+setup.enableChat = false;
 
 setup.setupGame = function() {
     // override this method if you want to do
