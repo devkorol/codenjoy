@@ -22,19 +22,33 @@ package com.codenjoy.dojo.mollymage.services;
  * #L%
  */
 
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.BIG_BADABOOM;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.CATCH_PERK_SCORE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.DEFAULT_PERKS;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.GHOSTS_COUNT;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.HERO_DIED_PENALTY;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.KILL_ENEMY_HERO_SCORE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.KILL_GHOST_SCORE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.KILL_OTHER_HERO_SCORE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.OPEN_TREASURE_BOX_SCORE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.PERK_WHOLE_TEAM_GET;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.POISON_THROWER_RECHARGE;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.POTIONS_COUNT;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.POTION_POWER;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.STEAL_POINTS;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.TREASURE_BOX_COUNT;
+import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.WIN_ROUND_SCORE;
+import static com.codenjoy.dojo.services.round.RoundSettings.Keys.ROUNDS_TEAMS_PER_ROOM;
+
 import com.codenjoy.dojo.games.mollymage.Element;
 import com.codenjoy.dojo.mollymage.model.items.perks.PerksSettingsWrapper;
 import com.codenjoy.dojo.services.event.Calculator;
 import com.codenjoy.dojo.services.settings.AllSettings;
 import com.codenjoy.dojo.services.settings.PropertiesKey;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.List;
-
-import static com.codenjoy.dojo.mollymage.services.GameSettings.Keys.*;
-import static com.codenjoy.dojo.services.round.RoundSettings.Keys.ROUNDS_TEAMS_PER_ROOM;
+import org.apache.commons.lang3.StringUtils;
 
 public class GameSettings extends SettingsImpl implements AllSettings<GameSettings> {
 
@@ -101,7 +115,7 @@ public class GameSettings extends SettingsImpl implements AllSettings<GameSettin
         integer(POTIONS_COUNT, 1);
         integer(POTION_POWER, 3);
         integer(TREASURE_BOX_COUNT, 52);
-        integer(GHOSTS_COUNT, 5);
+        integer(GHOSTS_COUNT, 10);
         integer(POISON_THROWER_RECHARGE, 3);
 
         bool(PERK_WHOLE_TEAM_GET, false);

@@ -2,20 +2,6 @@
   !!!DO NOT EDIT!!! -->
 <meta charset="UTF-8">
 
-## Вступление
-
-Игровой demo-сервер доступен так же в интернете 24/7 в целях
-ознакомления [http://codenjoy.com/codenjoy-contest](http://codenjoy.com/codenjoy-contest).
-
-Игра с открытым исходным кодом. Для реализации своей игры, исправления
-ошибок в текущей и внесения других правок необходимо для начала
-[форкнуть проект](https://github.com/codenjoyme/codenjoy.git).
-В корне репозитория есть описание в файле Readme.md - там описано, что делать дальше.
-
-По возникающим вопросам, пиши в [skype alexander.baglay](skype:alexander.baglay)
-или на почту [apofig@gmail.com](mailto:apofig@gmail.com).
-
-
 ## В чем суть игры?
 
 Будь внимателен: во время игры тебе стоит сосредоточиться на реализации логики
@@ -27,7 +13,7 @@ API для парсинга борды - уже реализовано для т
 по свободным ячейкам во все четыре стороны.
 
 Герой может также поставить зелье. Зелье взорвется через 5 тиков
-(секунд). Ядовитые газы от зелья могут зацепить обитателей поля.
+(секунд)[(?)](#ask). Ядовитые газы от зелья могут зацепить обитателей поля.
 Все, кто был задет - исчезает. С помощью зелья можно открывать сундуки.
 Пострадать можно и на своем, и на чужом зелье. 
 
@@ -48,34 +34,28 @@ API для парсинга борды - уже реализовано для т
 времени).
 
 [(?)](#ask)Точное количество очков за любое действие, а так же другие
-настройки на данный момент игры уточни у Сенсея.
+настройки на данный момент игры уточни у организаторов.
 
 ## Подключение к серверу
 
 Итак, игрок [регистрируется на сервере](../../../register?gameName=mollymage),
 указывая свой email.
 
-Далее необходимо подключиться из кода к серверу через websocket. 
-[Эта подборка](https://github.com/codenjoyme/codenjoy-clients.git) 
+Далее необходимо подключиться из кода к серверу через websocket. Для этого напиши нам в чатик в [телеграме](https://t.me/+cCXRvXcmM985NGEy) и для тебя все сделают!
+
+Опционально ты можешь сам скачать [подборку](https://github.com/codenjoyme/codenjoy-clients.git) 
 клиентов для разных языков программирования тебе поможет в твоей игре. 
 Как запустить клиент смотри в корне проекта в файле README.md.
 
-Если ты не можешь найти свой язык - придется написать свой клиент
-(а после пошарить с нами на почту [apofig@gmail.com](mailto:apofig@gmail.com))
 
 Адрес для подключения к игре на сервере выглядит так (ты можешь скопировать его 
 из игровой комнаты):
 
-`https://[server]/codenjoy-contest/board/player/[user]?code=[code]`
+`https://[server]/game/board/player/[user]?code=[code]`
 
 Тут `[server]` - домен или ip-адрес игрового сервера, `[user]` - id игрока, 
 a `[code]` - твой security token. Убедись что код хранится в тайне, 
 иначе любой участник сможет играть от твоего имени.
-
-В коде твоего клиента тебе нужно найти похожую строчку и заменить её твоим URL -
-тем самым, ты задаёшь логин/пароль для доступа к серверу.
-Затем запусти твой клиент и убедись, что сервер получает команды твоего клиента.
-После этого можно приступать к работе над логикой бота.
 
 ## Формат сообщений
 
@@ -137,40 +117,40 @@ C помощью этого regexp можно выкусить строку до
 
 Как это поле выглядит в реале:
 
-<img src="/codenjoy-contest/resources/mollymage/img/board/large.png" style="height:auto;" />
+<img src="/game/resources/mollymage/img/board/large.png" style="height:auto;" />
 
 <meta charset="UTF-8">
 
 ## Symbol breakdown
 | Sprite | Code | Description |
 | -------- | -------- | -------- |
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_timer_5.png" style="height:auto;" /> | `POTION_TIMER_5('5')` | После того как герой поставит зелье таймер включится (всего 5 тиков). | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_timer_4.png" style="height:auto;" /> | `POTION_TIMER_4('4')` | Это зелье взорвется после 4 тика. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_timer_3.png" style="height:auto;" /> | `POTION_TIMER_3('3')` | Это после 3... | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_timer_2.png" style="height:auto;" /> | `POTION_TIMER_2('2')` | Два.. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_timer_1.png" style="height:auto;" /> | `POTION_TIMER_1('1')` | Один. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/blast.png" style="height:auto;" /> | `BLAST('҉')` | Пуф! Это то, как зелье взрывается. При этом всех, кого можно уничтожить - будут уничтожены, закрытые сундуки - откроются. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/wall.png" style="height:auto;" /> | `WALL('☼')` | Неразрушаемые стены - им пары зелья не страшны. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/treasure_box.png" style="height:auto;" /> | `TREASURE_BOX('#')` | А это сундук с сокровищами, может быть открыт во время взрыва зелья. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/treasure_box_opening.png" style="height:auto;" /> | `TREASURE_BOX_OPENING('H')` | Это как открытый сундук выглядит, она пропадет в следующую секунду. Если это твоих рук дело - ты получишь бонусные очки. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/ghost.png" style="height:auto;" /> | `GHOST('&')` | Этот малый бегает по полю в произвольном порядке если он дотронется до героя - тот умрет его можно уничтожить с помощью зелья заработав бонусные очки. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/ghost_dead.png" style="height:auto;" /> | `GHOST_DEAD('x')` | Это уничтоженный призрак. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_blast_radius_increase.png" style="height:auto;" /> | `POTION_BLAST_RADIUS_INCREASE('+')` | Увеличивает радиус[(?)](#ask) распространения ядовитых паров. Действует только для вновь установленных зелий. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_count_increase.png" style="height:auto;" /> | `POTION_COUNT_INCREASE('c')` | Увеличивает количество[(?)](#ask) доступных игроку зелий. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_remote_control.png" style="height:auto;" /> | `POTION_REMOTE_CONTROL('r')` | Дистанционный детонатор. Срабатывает при повторном действии `ACT` команды. Количество детонаторов задается настройками[(?)](#ask). | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_immune.png" style="height:auto;" /> | `POTION_IMMUNE('i')` | Дает иммунитет от ядовитых паров на время[(?)](#ask). | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/poison_thrower.png" style="height:auto;" /> | `POISON_THROWER('T')` | Ядомет. Позволяет герою стрелять ядом. Радиус действия такой же как и у зелья. Активируется командой `АСТ(1),<DIRECTION>` (например: `RIGHT,ACT(1)`), работает параллельно с установкой зелий. После применения необходима "перезарядка". Действие временное[(?)](#ask). | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/potion_exploder.png" style="height:auto;" /> | `POTION_EXPLODER('A')` | Детонатор всех зелий на поле. Позволяет игроку взорвать все существующие зелья на поле независимо от их владельца и типа. Активируется командой `АСТ(2)`. Действие временное[(?)](#ask). | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/none.png" style="height:auto;" /> | `NONE(' ')` | Cвободная ячейка, куда ты можешь направить героя. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/hero.png" style="height:auto;" /> | `HERO('☺')` | Это то, как твой герой выглядит. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/hero_potion.png" style="height:auto;" /> | `HERO_POTION('☻')` | Твой герой варит зелье. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/hero_dead.png" style="height:auto;" /> | `HERO_DEAD('Ѡ')` | Ойкс! Твой герой умер. Не волнуйся, он появится через секунду где-нибудь на поле, но вполне вероятно за это ты получишь штрафные очки. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/other_hero.png" style="height:auto;" /> | `OTHER_HERO('♥')` | Это то, как другой игрок выглядит. В зависимости от режима игры: командный или все против всех - это либо либо напарник либо противник соответственно. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/other_hero_potion.png" style="height:auto;" /> | `OTHER_HERO_POTION('♠')` | Другой герой под которым варится зелье. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/other_hero_dead.png" style="height:auto;" /> | `OTHER_HERO_DEAD('♣')` | Другой герой погиб (он пропадет в следующем тике). Если это твоих рук дело - ты получишь бонусные очки. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/enemy_hero.png" style="height:auto;" /> | `ENEMY_HERO('ö')` | Герой противник. Актуально для командной игры. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/enemy_hero_potion.png" style="height:auto;" /> | `ENEMY_HERO_POTION('Ö')` | Герой-противник под которым варится зелье. | 
-|<img src="/codenjoy-contest/resources/mollymage/sprite/enemy_hero_dead.png" style="height:auto;" /> | `ENEMY_HERO_DEAD('ø')` | Герой-противник уничтожен. Если это твоя заслуга - ты получишь бонусные очки. | 
+|<img src="/game/resources/mollymage/sprite/potion_timer_5.png" style="height:auto;" /> | `POTION_TIMER_5('5')` | После того как герой поставит зелье таймер включится (всего 5 тиков). | 
+|<img src="/game/resources/mollymage/sprite/potion_timer_4.png" style="height:auto;" /> | `POTION_TIMER_4('4')` | Это зелье взорвется после 4 тика. | 
+|<img src="/game/resources/mollymage/sprite/potion_timer_3.png" style="height:auto;" /> | `POTION_TIMER_3('3')` | Это после 3... | 
+|<img src="/game/resources/mollymage/sprite/potion_timer_2.png" style="height:auto;" /> | `POTION_TIMER_2('2')` | Два.. | 
+|<img src="/game/resources/mollymage/sprite/potion_timer_1.png" style="height:auto;" /> | `POTION_TIMER_1('1')` | Один. | 
+|<img src="/game/resources/mollymage/sprite/blast.png" style="height:auto;" /> | `BLAST('҉')` | Пуф! Это то, как зелье взрывается. При этом всех, кого можно уничтожить - будут уничтожены, закрытые сундуки - откроются. | 
+|<img src="/game/resources/mollymage/sprite/wall.png" style="height:auto;" /> | `WALL('☼')` | Неразрушаемые стены - им пары зелья не страшны. | 
+|<img src="/game/resources/mollymage/sprite/treasure_box.png" style="height:auto;" /> | `TREASURE_BOX('#')` | А это сундук с сокровищами, может быть открыт во время взрыва зелья. | 
+|<img src="/game/resources/mollymage/sprite/treasure_box_opening.png" style="height:auto;" /> | `TREASURE_BOX_OPENING('H')` | Это как открытый сундук выглядит, она пропадет в следующую секунду. Если это твоих рук дело - ты получишь бонусные очки. | 
+|<img src="/game/resources/mollymage/sprite/ghost.png" style="height:auto;" /> | `GHOST('&')` | Этот малый бегает по полю в произвольном порядке если он дотронется до героя - тот умрет его можно уничтожить с помощью зелья заработав бонусные очки. | 
+|<img src="/game/resources/mollymage/sprite/ghost_dead.png" style="height:auto;" /> | `GHOST_DEAD('x')` | Это уничтоженный призрак. | 
+|<img src="/game/resources/mollymage/sprite/potion_blast_radius_increase.png" style="height:auto;" /> | `POTION_BLAST_RADIUS_INCREASE('+')` | Увеличивает радиус[(?)](#ask) распространения ядовитых паров. Действует только для вновь установленных зелий. | 
+|<img src="/game/resources/mollymage/sprite/potion_count_increase.png" style="height:auto;" /> | `POTION_COUNT_INCREASE('c')` | Увеличивает количество[(?)](#ask) доступных игроку зелий. | 
+|<img src="/game/resources/mollymage/sprite/potion_remote_control.png" style="height:auto;" /> | `POTION_REMOTE_CONTROL('r')` | Дистанционный детонатор. Срабатывает при повторном действии `ACT` команды. Количество детонаторов задается настройками[(?)](#ask). | 
+|<img src="/game/resources/mollymage/sprite/potion_immune.png" style="height:auto;" /> | `POTION_IMMUNE('i')` | Дает иммунитет от ядовитых паров на время[(?)](#ask). | 
+|<img src="/game/resources/mollymage/sprite/poison_thrower.png" style="height:auto;" /> | `POISON_THROWER('T')` | Ядомет. Позволяет герою стрелять ядом. Радиус действия такой же как и у зелья. Активируется командой `АСТ(1),<DIRECTION>` (например: `RIGHT,ACT(1)`), работает параллельно с установкой зелий. После применения необходима "перезарядка". Действие временное[(?)](#ask). | 
+|<img src="/game/resources/mollymage/sprite/potion_exploder.png" style="height:auto;" /> | `POTION_EXPLODER('A')` | Детонатор всех зелий на поле. Позволяет игроку взорвать все существующие зелья на поле независимо от их владельца и типа. Активируется командой `АСТ(2)`. Действие временное[(?)](#ask). | 
+|<img src="/game/resources/mollymage/sprite/none.png" style="height:auto;" /> | `NONE(' ')` | Cвободная ячейка, куда ты можешь направить героя. | 
+|<img src="/game/resources/mollymage/sprite/hero.png" style="height:auto;" /> | `HERO('☺')` | Это то, как твой герой выглядит. | 
+|<img src="/game/resources/mollymage/sprite/hero_potion.png" style="height:auto;" /> | `HERO_POTION('☻')` | Твой герой варит зелье. | 
+|<img src="/game/resources/mollymage/sprite/hero_dead.png" style="height:auto;" /> | `HERO_DEAD('Ѡ')` | Ойкс! Твой герой умер. Не волнуйся, он появится через секунду где-нибудь на поле, но вполне вероятно за это ты получишь штрафные очки. | 
+|<img src="/game/resources/mollymage/sprite/other_hero.png" style="height:auto;" /> | `OTHER_HERO('♥')` | Это то, как другой игрок выглядит. В зависимости от режима игры: командный или все против всех - это либо либо напарник либо противник соответственно. | 
+|<img src="/game/resources/mollymage/sprite/other_hero_potion.png" style="height:auto;" /> | `OTHER_HERO_POTION('♠')` | Другой герой под которым варится зелье. | 
+|<img src="/game/resources/mollymage/sprite/other_hero_dead.png" style="height:auto;" /> | `OTHER_HERO_DEAD('♣')` | Другой герой погиб (он пропадет в следующем тике). Если это твоих рук дело - ты получишь бонусные очки. | 
+|<img src="/game/resources/mollymage/sprite/enemy_hero.png" style="height:auto;" /> | `ENEMY_HERO('ö')` | Герой противник. Актуально для командной игры. | 
+|<img src="/game/resources/mollymage/sprite/enemy_hero_potion.png" style="height:auto;" /> | `ENEMY_HERO_POTION('Ö')` | Герой-противник под которым варится зелье. | 
+|<img src="/game/resources/mollymage/sprite/enemy_hero_dead.png" style="height:auto;" /> | `ENEMY_HERO_DEAD('ø')` | Герой-противник уничтожен. Если это твоя заслуга - ты получишь бонусные очки. | 
 
 
 ## Как играть?
@@ -266,8 +246,8 @@ C помощью этого regexp можно выкусить строку до
 ## Кейзы
 
 * Ты можешь комбинировать перки
-* Кто получит очки после использования `POTION_EXPLODER` - решает Сенсей[(?)](#ask).
-* Пожалуйста, будь уважителен с перками на поле.
+* Кто получит очки после использования `POTION_EXPLODER` - решается настройками[(?)](#ask).
+* Пожалуйста, будь осторожен с перками на поле.
 
 ## Подсказки
 
@@ -286,67 +266,49 @@ C помощью этого regexp можно выкусить строку до
 
 ## FAQ
 
-* Интересно, что будет, если два игрока попытаются переместить своих героев 
+* Интересно, что будет, если два игрока попытаются переместить своих героев
   на одну клетку одновременно? Оба мага умрут?
   + Кто-то двинется первым, второй останется на прежнем месте.
 * Что делать после клонирования клиента javascript?
   + Информацию о том, как начать играть, ты можешь найти в файле ReadMe.md.
     Тебе нужно обновить этот файл `browser-0-settings.js`.
-    И после этого запустить файл `browser-2-run.html`. Логику бота стоит 
-    реализовать в `codenjoy-javascript-client/games/mollymage/solver.js`. 
-* What will I see on a client when dead ghost (created after destruction
-  of a perk) meet treasure box on his way?
-  + Destroyed perks just want to kill you. And he will try to get to you
-    in the shortest way possible. If box appear on his way - he'll find
-    another way to you.
-* It seemed to me that they can destroy treasure boxes on their way
-  + I see one thing in the server code, that if the treasure box appeared
-    under the ghostHunter - he shows to us as opened treasure box
-* Is there a way to get the information about what perks are active for
-  the hero or should have to maintain this by ourselves?
-  + Only maintain by yourself
-* I am not able to find information about how long one perk is active;
-  please share the link for the information in case I have missed this.
-  + Sometimes it can changes. So here you can get server game settings
-    [in json](/codenjoy-contest/rest/settings/player).
-* So just wanted to double check - the finals - do we do rounds there? or
-  the type of the game like indefinite free for all?
-  + Final will be in Rounds with 7-9 heroes per room. The Heroes in the
-    rooms will be constantly shuffling. There will be no fixed playgroups.
-    Playing fields will also change from round to round.
-* Now on map nothing moving - is it working now? Or still under maintenance?
-  + Please check, maybe you in another game room. There are demo game flood
-    room and event room. Please join in the event room.
-* It would be good - if to have some sample code to have
-  + Would be. Maybe some tips will help you. Please look into the classes
-    which presented in your client. Class Board as usual has some methods
-    that can help you analyze field state
-* Fore some reason, flying GHOST_DEADs are shown as 'opening treasure boxes',
-  is it an issue or I don't understand smth?
-  + This is expected; blasting potions create flying ghosts which will find
-    shortest path opening treasure to kill you.
-* Is it possible for java client to load the local game in browser?
-  + Java client could be loaded only from IDE or console. It does not have
-    browser version. Only JS client has web version.
-* I'm interested how the final would be conducted... Do we need to reconnect
-  to the same server or other server? Or the score would be skipped and all
-  connections would be saved?There is a risk that I could be absent at the
-  moment, and would like to participate and look who's bot is the most
-  successful. So I would like to plan my steps.
-  + It will be in the same room. You need to play like you played before.
-    The finale will begin with the room resetting points for all players. That's all.
-* How to combine in JS both `ACT` and `LEFT`?
+    И после этого запустить файл `browser-2-run.html`. Логику бота стоит
+    реализовать в `codenjoy-javascript-client/games/mollymage/solver.js`.
+* Что я увижу в клиенте, когда мертвый призрак (создан после GHOST_DEADs
+  перка) встретит на своем пути ящик с сокровищами?
+  + GHOST_DEADs просто хотят вас убить. И он попытается добраться до вас
+    кратчайшим путем. Если на его пути появится ящик - он найдет
+    другой путь к вам.
+* Мне показалось, что они могут уничтожать ящики с сокровищами на своем пути
+  + Я вижу одну вещь в коде сервера, что если ящик с сокровищами появился
+    под ghostHunter - он показывает нам открытый ящик с сокровищами
+* Есть ли способ получить информацию о том, какие перки активны для
+  героя или нам нужно сделать это самостоятельно?
+  + Только реализовать логику самостоятельно
+* Я не могу найти информацию о том, как долго активен один перк;
+  пожалуйста, поделитесь ссылкой на информацию, если я это пропустил.
+  + Иногда это может меняться. Поэтому здесь вы можете получить настройки игры на сервере
+    [в json](/game/rest/settings/player).
+* Было бы хорошо - если бы у вас был какой-то пример кода
+  + Пожалуйста, посмотрите на классы, которые представлены в вашем клиенте. Доска классов, как обычно, имеет некоторые методы,
+    которые могут помочь вам проанализировать состояние поля
+* Мне интересно, как будет проходить финал... Нужно ли нам переподключаться к тому же серверу или другому серверу? Или счет будет сброшен, а все
+  подключения будут сохранены? Есть риск, что я могу отсутствовать в данный момент, и хотел бы поучаствовать и посмотреть, чей бот самый
+  успешный. Поэтому я хотел бы спланировать свои шаги.
+  + Это будет в той же комнате. Вам нужно играть так же, как вы играли раньше.
+    Финал начнется с того, что комната сбросит очки для всех игроков. Вот и все.
+* Как объединить в JS и `ACT`, и `LEFT`?
   + `return [Direction.ACT, Direction.LEFT];`
 
-## <a id="ask"></a> Спроси Сенсея
+## <a id="ask"></a> Настрйоки
 
 Параметры могут изменяться по ходу игры. Настройки текущей игры
-ты сможешь всегда [подглядеть тут](/codenjoy-contest/rest/settings/player).
-Пожалуйста, спроси у Сенсея как интерпретировать эти данные. Ты можешь найти Сенсея
-в чате, который подготовили организаторы для обсуждения вопросов.
+ты сможешь всегда [подглядеть тут](/game/rest/settings/player).
+
+Если есть сложности с игрой и настройками ты всегда можешь написать нам в чатик [телеграм группы](https://t.me/+cCXRvXcmM985NGEy)
+
 
 ## Клиент и API
-
 Организаторы предоставляют игрокам подготовленные клиенты в исходном
 коде на нескольких языках. Каждый из этих клиентов уже умеет связываться
 с сервером, принимать и разбирать сообщение от сервера (обычно это называется board)
@@ -406,17 +368,6 @@ C помощью этого regexp можно выкусить строку до
   (зелье распространяется на N {решим перед началом игры} клеточек 
   в стороны: вверх, вниз, вправо, влево).
 * и так далее... 
-
-## Как провести такой же ивент самостоятельно?
-
-Перед тобой opensource проект. Для реализации своей новой игры, модификации этой игры,
-любой другой модификации сервера или исправления найденной ошибки
-[форкни проект](https://github.com/codenjoyme/codenjoy.git).
-Все инструкции ты найдешь в Readme.md файлах - они подскажут, что делать дальше.
-
-Если у тебя есть вопросы - прошу, задавай их мне
-в [скайпе alexander.baglay](skype:alexander.baglay)
-или по почте [apofig@gmail.com](mailto:apofig@gmail.com).
 
 Удачной игры и пусть победит сильнейший! 
 

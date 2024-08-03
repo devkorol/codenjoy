@@ -153,9 +153,7 @@ License along with this program.  If not, see
         <div class="container-fluid">
             <nav class="footer-nav">
                 <ul class="footer-list">
-                    <li class="footer-item inline"><a href="http://codenjoy.com" target="blank">About DOJO</a></li>
-                    <li class="footer-item inline"><a href="https://github.com/codenjoyme/codenjoy" target="blank">Codenjoy on GitHub</a></li>
-                    <li class="footer-item inline"><a href="mailto:codenjoyme@gmail.com" target="blank">Ask me anything</a></li>
+                    <li class="footer-item inline"><a href="https://t.me/+cCXRvXcmM985NGEy" target="blank">Телегам группа</a></li>
                 </ul>
             </nav>
         </div>
