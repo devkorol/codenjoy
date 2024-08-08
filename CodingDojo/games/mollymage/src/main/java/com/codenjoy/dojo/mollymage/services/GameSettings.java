@@ -114,8 +114,8 @@ public class GameSettings extends SettingsImpl implements AllSettings<GameSettin
         bool(BIG_BADABOOM, false);
         integer(POTIONS_COUNT, 1);
         integer(POTION_POWER, 3);
-        integer(TREASURE_BOX_COUNT, 52);
-        integer(GHOSTS_COUNT, 10);
+        integer(TREASURE_BOX_COUNT, 39);
+        integer(GHOSTS_COUNT, 4);
         integer(POISON_THROWER_RECHARGE, 3);
 
         bool(PERK_WHOLE_TEAM_GET, false);
