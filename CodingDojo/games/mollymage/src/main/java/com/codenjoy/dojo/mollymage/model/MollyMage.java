@@ -201,7 +201,9 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
             if (!owner.isActiveAndAlive()) {
                 if (potion.isOnRemote()) {
                     potion.activateRemote(owner);
-                    owner.getPerk(Element.POTION_REMOTE_CONTROL).decrease();
+                    if(owner.getPerk(Element.POTION_REMOTE_CONTROL) != null) {
+                        owner.getPerk(Element.POTION_REMOTE_CONTROL).decrease();
+                    }
                 }
             }
         }

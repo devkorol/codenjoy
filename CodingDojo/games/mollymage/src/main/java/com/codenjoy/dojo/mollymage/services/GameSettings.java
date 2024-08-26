@@ -120,7 +120,7 @@ public class GameSettings extends SettingsImpl implements AllSettings<GameSettin
 
         bool(PERK_WHOLE_TEAM_GET, false);
         string(DEFAULT_PERKS, StringUtils.EMPTY);
-        bool(STEAL_POINTS, false);
+        bool(STEAL_POINTS, true);
         PerksSettingsWrapper perks =
                 perksSettings()
                     .dropRatio(20) // Set value to 0% = perks is disabled.

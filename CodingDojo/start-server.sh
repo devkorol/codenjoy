@@ -24,7 +24,7 @@
 
 
 java -jar /home/kkorol/codenjoy/CodingDojo/server/target/codenjoy-contest.war \
-        --MAVEN_OPTS="-Xmx3072m -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError -XX:+CrashOnOutOfMemoryError" \
+        --MAVEN_OPTS="-Xmx8192m -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError -XX:+CrashOnOutOfMemoryError" \
         --context=/game \
         --server.port=8080 \
         --spring.profiles.active=postgres,mollymage \
