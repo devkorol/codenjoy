@@ -161,8 +161,26 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     @Override
     public Optional<Point> freeRandom(Player player) {
-        return Generator.freeRandom(size(), dice, this::isFree);
+        return Generator.freeRandom(size(), dice, this::isFreeAndNotNearTheHero);
     }
+
+    public boolean isFreeAndNotNearTheHero(Point pt) {
+        boolean b = !isBarrier(pt, !FOR_HERO);
+        if(!b) {
+            return false;
+        } else {
+            for (Player player : players) {
+               if (player.getHero() == null) {
+                   continue;
+               }
+               if(Math.abs(player.getHero().getX() - pt.getX()) + Math.abs(player.getHero().getY() - pt.getY()) < 5) {
+                   return false;
+               }
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public boolean isFree(Point pt) {
