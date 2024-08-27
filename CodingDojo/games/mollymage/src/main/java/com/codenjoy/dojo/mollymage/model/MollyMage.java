@@ -239,7 +239,9 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     private void applyAllHeroes() {
         for (Player player : players) {
-            player.getHero().apply();
+            if(player.getHero() != null) {
+                player.getHero().apply();
+            }
         }
     }
 
