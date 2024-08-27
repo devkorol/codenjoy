@@ -109,7 +109,7 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     public void generateGhosts() {
         generate(ghosts(), size(), settings, GHOSTS_COUNT,
-                player -> freeRandom((Player) player),
+                player -> freeObstacleRandom((Player) player),
                 pt -> {
                     Ghost ghost = new Ghost(pt);
                     ghost.init(this);
@@ -119,7 +119,7 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     public void generateBoxes() {
         generate(boxes(), size(), settings, TREASURE_BOX_COUNT,
-                player -> freeRandom((Player) player),
+                player -> freeObstacleRandom((Player) player),
                 TreasureBox::new);
     }
 
@@ -161,6 +161,10 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     @Override
     public Optional<Point> freeRandom(Player player) {
+        return Generator.freeRandom(size(), dice, this::isFree);
+    }
+
+    public Optional<Point> freeObstacleRandom(Player player) {
         return Generator.freeRandom(size(), dice, this::isFreeAndNotNearTheHero);
     }
 
