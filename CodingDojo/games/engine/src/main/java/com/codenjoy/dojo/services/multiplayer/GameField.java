@@ -85,6 +85,11 @@ public interface GameField<P extends GamePlayer, H extends PlayerHero> extends T
         return null;
     }
 
+    default Optional<Point> freeObstacleRandom(P player) {
+        return freeRandom(player);
+    }
+
+
     int size();
 
     /**

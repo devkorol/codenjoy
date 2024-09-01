@@ -164,6 +164,7 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
         return Generator.freeRandom(size(), dice, this::isFree);
     }
 
+    @Override
     public Optional<Point> freeObstacleRandom(Player player) {
         return Generator.freeRandom(size(), dice, this::isFreeAndNotNearTheHero);
     }
