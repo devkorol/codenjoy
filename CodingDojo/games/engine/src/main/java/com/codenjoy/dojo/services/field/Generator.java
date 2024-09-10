@@ -94,7 +94,7 @@ public class Generator {
     {
         Point pt = new PointImpl();
         int count = 0;
-        int max = 100;
+        int max = 200;
         do {
             pt.setX(getX.get());
             pt.setY(getY.get());
