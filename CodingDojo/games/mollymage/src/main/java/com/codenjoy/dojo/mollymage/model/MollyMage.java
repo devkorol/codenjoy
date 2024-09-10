@@ -188,12 +188,12 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
             }
             if (isHero) {
                 for (TreasureBox box : boxes()) {
-                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 5) {
+                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 4) {
                         return false;
                     }
                 }
                 for (Ghost box : ghosts()) {
-                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 5) {
+                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 3) {
                         return false;
                     }
                 }
