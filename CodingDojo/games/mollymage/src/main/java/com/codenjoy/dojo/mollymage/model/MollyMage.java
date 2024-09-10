@@ -109,7 +109,7 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     public void generateGhosts() {
         generate(ghosts(), size(), settings, GHOSTS_COUNT,
-                player -> freeObstacleRandom((Player) player),
+                player -> freeObstacleRandom((Player) player, false),
                 pt -> {
                     Ghost ghost = new Ghost(pt);
                     ghost.init(this);
@@ -119,7 +119,7 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     public void generateBoxes() {
         generate(boxes(), size(), settings, TREASURE_BOX_COUNT,
-                player -> freeObstacleRandom((Player) player),
+                player -> freeObstacleRandom((Player) player, false),
                 TreasureBox::new);
     }
 
@@ -166,10 +166,14 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
 
     @Override
     public Optional<Point> freeObstacleRandom(Player player) {
-        return Generator.freeRandom(size(), dice, this::isFreeAndNotNearTheHero);
+        return Generator.freeRandom(size(), dice, (p) -> isFreeAndNotNearTheHero(p, true));
     }
 
-    public boolean isFreeAndNotNearTheHero(Point pt) {
+    public Optional<Point> freeObstacleRandom(Player player, boolean isHero) {
+        return Generator.freeRandom(size(), dice, (p) -> isFreeAndNotNearTheHero(p, isHero));
+    }
+
+    public boolean isFreeAndNotNearTheHero(Point pt, boolean isHero) {
         boolean b = !isBarrier(pt, !FOR_HERO);
         if(!b) {
             return false;
@@ -181,6 +185,24 @@ public class MollyMage extends RoundField<Player, Hero> implements Field {
                if(Math.abs(player.getHero().getX() - pt.getX()) + Math.abs(player.getHero().getY() - pt.getY()) < 5) {
                    return false;
                }
+            }
+            if (isHero) {
+                for (TreasureBox box : boxes()) {
+                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 5) {
+                        return false;
+                    }
+                }
+                for (Ghost box : ghosts()) {
+                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 5) {
+                        return false;
+                    }
+                }
+                for (Potion box : potions()) {
+                    if(Math.abs(box.getX() - pt.getX()) + Math.abs(box.getY() - pt.getY()) < 5) {
+                        return false;
+                    }
+                }
+
             }
         }
         return true;
