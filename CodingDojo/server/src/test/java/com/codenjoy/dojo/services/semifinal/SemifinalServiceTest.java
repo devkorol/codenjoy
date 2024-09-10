@@ -752,7 +752,7 @@ public class SemifinalServiceTest extends AbstractDealsTest {
 
         updateSettings("room")
                 .setPercentage(false)
-                .setLimit(3);
+                .setLimit(7);
 
         // when
         ticksTillTimeout();
@@ -770,7 +770,7 @@ public class SemifinalServiceTest extends AbstractDealsTest {
 
         updateSettings("room")
                 .setPercentage(false)
-                .setLimit(3);
+                .setLimit(0);
 
         // when
         ticksTillTimeout();
@@ -1223,7 +1223,7 @@ public class SemifinalServiceTest extends AbstractDealsTest {
 
         updateSettings("room")
                 .setPercentage(false)
-                .setLimit(4);
+                .setLimit(3);
 
         // when
         ticksTillTimeout();
@@ -1231,6 +1231,26 @@ public class SemifinalServiceTest extends AbstractDealsTest {
         // then
         assertActive(player1, player2, player3, player4);
     }
+
+    @Test
+    public void shouldCut1Player() {
+        // given
+        Player player1 = createPlayerWithScore(400);
+        Player player2 = createPlayerWithScore(100);
+        Player player3 = createPlayerWithScore(300);
+        Player player4 = createPlayerWithScore(200);
+
+        updateSettings("room")
+            .setPercentage(false)
+            .setLimit(1);
+
+        // when
+        ticksTillTimeout();
+
+        // then
+        assertActive(player1, player3, player4);
+    }
+    
 
     @Test
     public void shouldDontCutPlayers_whenAllScoresAreSame_cutMoreThanPlayers() {
